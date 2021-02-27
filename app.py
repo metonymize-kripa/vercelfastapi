@@ -26,7 +26,7 @@ def wise_parser(symbol):
 skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser}
 
 @app.get("/initialize/{key}")
-def parse(key: str):
+def init_parsers(key: str):
     if key = "TheAnswerIs42":
         wsb_dictionary={"SPY":0.1}
         wise_dictionary={"SPY":0.2}

@@ -2,10 +2,8 @@ from fastapi import FastAPI
 import datetime
 
 app = FastAPI()
-wsb_dictionary=Dict()
-wise_dictionary=Dict()
-
-skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser}
+wsb_dictionary={"SPY":0.1}
+wise_dictionary={"SPY":0.2}
 
 def dispatch_skill_parser(skill, symbol):
     try:
@@ -24,7 +22,9 @@ def wise_parser(symbol):
         return wise_dictionary[symbol]
     except
         return 0
-    
+
+skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser}
+
 @app.get("/initialize/{key}")
 def parse(key: str):
     if key = "TheAnswerIs42":

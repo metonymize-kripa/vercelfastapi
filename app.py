@@ -9,13 +9,13 @@ wise_dictionary={"SPY":0.2}
 def wsb_parser(symbol):	
     try:	
         return wsb_dictionary[symbol]	
-    except	
+    except:	
         return 0	
 
 def wise_parser(symbol):	
     try:	
         return wise_dictionary[symbol]	
-    except	
+    except:	
         return 0	
 
 skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser}	

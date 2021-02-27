@@ -13,5 +13,5 @@ def example(parameter: str):
 @app.get("/")
 def main():
     return {
-        "message": "Hello my friend"
+        "message": "Hello, world!"
     }

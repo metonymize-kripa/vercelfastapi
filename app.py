@@ -20,7 +20,8 @@ def wise_parser(symbol):
 
 skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser}	
 
-def dispatch_skill_parser(skill, symbol):	
+def dispatch_skill_parser(skill, symbol):
+    initialize()
     try:	
         return skills_dictionary[skill](symbol)	
     except:	

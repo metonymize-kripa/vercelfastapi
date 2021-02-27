@@ -42,7 +42,7 @@ def parse(parameter: str):
     if  num_parameters_parsed == 2:
         parsed_symbol = parsed_parameter_list[0].upper()
         parsed_skill = parsed_parameter_list[1].upper()
-        skill_returned_value = dispatch_skill_parser(skill, symbol)
+        skill_returned_value = dispatch_skill_parser(parsed_skill, parsed_symbol)
     else:
         return {"symbol": "no symbol",
                 "skill": "no skill",

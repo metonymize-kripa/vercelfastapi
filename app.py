@@ -58,6 +58,22 @@ def parse(parameter: str):
     }	
     """
 
+@app.get("/initialize")
+def initialize():
+    try:
+        with open('wsb.csv') as fr:
+            for line in fr:
+                [symbol,mention]=line.strip().split(',')
+                wsb_dictionary[symbol]=float(mention)
+                wise_dictionary[symbol]=float(mention)
+        return {
+        "message": "Files initialized"
+        }
+    except:
+        return {
+            "message": "Initialization failed"
+        }
+
 @app.get("/")
 def main():
     return {

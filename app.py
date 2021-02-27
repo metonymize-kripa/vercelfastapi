@@ -11,7 +11,7 @@ def example(parameter: str):
     if  num_parameters_parsed == 1:
         parsed_symbol = parsed_parameter_list[0].upper()
         parsed_skill = parsed_parameter_list[1].upper()
-    elsif num_parameters_parsed == 2:
+    else if num_parameters_parsed == 2:
         parsed_symbol = parsed_parameter_list[0].upper()
         parsed_skill = parsed_parameter_list[1].upper()
     else:

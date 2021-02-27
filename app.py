@@ -46,7 +46,7 @@ def parse(parameter: str):
         return {"symbol": parsed_symbol,	
                 "skill": parsed_skill,	
                 "skill_output": skill_returned_value,	
-                "datetime": datetime.datetime.now().time()}	
+                "datetime": datetime.date.today()}#datetime.now().time()}	
     except:	
         return {"symbol": "no symbol",	
                 "skill": "no skill",	

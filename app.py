@@ -5,6 +5,7 @@ app = FastAPI()
 
 wsb_dictionary={"SPY":0.1}
 wise_dictionary={"SPY":0.2}
+div2_dictionary={"SPY":2}
 
 def wsb_parser(symbol):	
     try:	
@@ -16,11 +17,18 @@ def wise_parser(symbol):
     try:	
         return wise_dictionary[symbol]	
     except:	
+        return -1
+
+def div2_parser(symbol):	
+    try:	
+        return div2_dictionary[symbol]	
+    except:	
         return 0	
 
-skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser}	
+skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser}	
 
 def dispatch_skill_parser(skill, symbol):
+    initialize_div2()
     initialize()
     try:	
         return skills_dictionary[skill](symbol)	
@@ -58,7 +66,20 @@ def parse(parameter: str):
         "datetime": datetime.datetime.now().time()	
     }	
     """
-
+def initialize_div2():
+    try:
+        with open('div2.csv') as fr:
+            for line in fr:
+                [symbol,new_div,old_div,change]=line.strip().split(',')
+                div2_dictionary[symbol]=new_div
+        return {
+        "message": "Dividend file initialized"
+        }
+    except:
+        return {
+            "message": "Initialization failed"
+        }
+    
 @app.get("/initialize")
 def initialize():
     try:

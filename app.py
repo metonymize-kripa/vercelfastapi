@@ -5,13 +5,13 @@ app = FastAPI()
 
 wsb_dictionary={"SPY":0.1}
 wise_dictionary={"SPY":0.2}
-div2_dictionary={"SPY":2}
+div2_dictionary={"SPY":-1}
 
 def wsb_parser(symbol):	
     try:	
         return wsb_dictionary[symbol]	
     except:	
-        return 0	
+        return -1	
 
 def wise_parser(symbol):	
     try:	
@@ -23,7 +23,7 @@ def div2_parser(symbol):
     try:	
         return div2_dictionary[symbol]	
     except:	
-        return 0	
+        return -1	
 
 skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser}	
 

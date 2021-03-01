@@ -68,6 +68,7 @@ def parse(parameter: str):
     """
 def initialize_div2():
     try:
+        # using data from periodic updates at https://www.spglobal.com/spdji/en/indices/equity/sp-500-dividend-points-index-annual/#overview
         with open('div2.csv') as fr:
             for line in fr:
                 [symbol,new_div,old_div,change]=line.strip().split(',')

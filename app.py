@@ -96,7 +96,7 @@ def initialize_dive():
         with open('dive-mar2-2021.csv') as fr:
             for line in fr:
                 split_line = line.strip().split(',')
-                if len(split_line) == 6:
+                if len(split_line) == 7:
                     [Symbol,Status,NextPayDate,DivYield,NextEstPayout,AnnualDividend,ExDiv]=split_line
                     dive_dictionary[Symbol]={"symbol":Symbol,
                                              "status":Status,

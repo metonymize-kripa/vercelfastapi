@@ -49,12 +49,11 @@ def dispatch_skill_parser(skill, symbol):
     
 @app.get("/parse/{parameter}")
 def parse(parameter: str):
-    parsed_parameter_list = str(parameter).strip().split('%20')
+    parsed_parameter_list = parameter.strip().split('%20')
     num_parameters_parsed = len(parsed_parameter_list)
     
-    return {"Output":parsed_parameter_list}
+    #return {"Output":parsed_parameter_list}
 
-"""
     if  num_parameters_parsed == 2:	
         parsed_symbol = parsed_parameter_list[0].upper()	
         parsed_skill = parsed_parameter_list[1].upper()	
@@ -73,8 +72,7 @@ def parse(parameter: str):
         return {"symbol": "no symbol",	
                 "skill": "no skill",	
                 "skill_output": "no output",	
-                "datetime": "no time"}	
-"""              
+                "datetime": "no time"}	           
 
 def initialize_div2():
     try:

@@ -51,8 +51,7 @@ def dispatch_skill_parser(skill, symbol):
 def parse(parameter: str):
     parsed_parameter_list = parameter.strip().split("_")
     num_parameters_parsed = len(parsed_parameter_list)
-    return {"input": parsed_parameter_list}
-"""
+
     if  num_parameters_parsed == 2:	
         parsed_symbol = parsed_parameter_list[0].upper()	
         parsed_skill = parsed_parameter_list[1].upper()	
@@ -73,7 +72,6 @@ def parse(parameter: str):
                 "skill_output": "no output",	
                 "datetime": "no time"}	
                 
-"""
 
 def initialize_div2():
     try:

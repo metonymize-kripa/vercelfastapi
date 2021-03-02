@@ -7,19 +7,22 @@ wsb_dictionary={"SPY":0.1}
 wise_dictionary={"SPY":0.2}
 div2_dictionary={"SPY":-1}
 
-def wsb_parser(symbol):	
+def wsb_parser(symbol):
+    initialize()
     try:	
         return wsb_dictionary[symbol]	
     except:	
         return -1	
 
-def wise_parser(symbol):	
+def wise_parser(symbol):
+    initialize()
     try:	
         return wise_dictionary[symbol]	
     except:	
         return -1
 
 def div2_parser(symbol):	
+    initialize_div2()
     try:	
         return div2_dictionary[symbol]	
     except:	
@@ -28,8 +31,6 @@ def div2_parser(symbol):
 skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser}	
 
 def dispatch_skill_parser(skill, symbol):
-    initialize_div2()
-    initialize()
     try:	
         return skills_dictionary[skill](symbol)	
     except:	

@@ -49,7 +49,7 @@ def dispatch_skill_parser(skill, symbol):
     
 @app.get("/parse/{parameter}")
 def parse(parameter: str):
-    parsed_parameter_list = parameter.strip().split("_")
+    parsed_parameter_list = parameter.strip().split()
     num_parameters_parsed = len(parsed_parameter_list)
 
     if  num_parameters_parsed == 2:	

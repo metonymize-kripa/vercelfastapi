@@ -99,13 +99,15 @@ def initialize_dive():
         # Symbol,Status,NextPayDate,DivYield,NextEstPayout,AnnualDividend
         with open('dive-mar2-2021.csv') as fr:
             for line in fr:
-                [Symbol,Status,NextPayDate,DivYield,NextEstPayout,AnnualDividend]=line.strip().split(',')
-                dive_dictionary[Symbol]={"symbol":Symbol,
-                                         "status":Status,
-                                         "nextpaydate":NextPayDate,
-                                         "divyield":DivYield,
-                                         "nextestpayout":NextEstPayout,
-                                         "annualdividend":AnnualDividend}
+                split_line = line.strip().split(',')
+                if len(split_line) == 6:
+                    [Symbol,Status,NextPayDate,DivYield,NextEstPayout,AnnualDividend]=split_line
+                    dive_dictionary[Symbol]={"symbol":Symbol,
+                                             "status":Status,
+                                             "nextpaydate":NextPayDate,
+                                             "divyield":DivYield,
+                                             "nextestpayout":NextEstPayout,
+                                             "annualdividend":AnnualDividend}
         return {
         "message": "DIVE file initialized"
         }

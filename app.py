@@ -5,8 +5,7 @@ app = FastAPI()
 
 wsb_dictionary={"SPY":0.1}
 wise_dictionary={"SPY":0.2}
-div2_dictionary={}
-dive_dictionary={}
+div2_dictionary={"SPY":-1}
 
 def wsb_parser(symbol):
     initialize()
@@ -29,17 +28,7 @@ def div2_parser(symbol):
     except:	
         return -1	
 
-def dive_parser(symbol):	
-    try:	
-        return dive_dictionary[symbol]	
-    except:
-        initialize_dive()
-        try:
-            return dive_dictionary[symbol]
-        except:
-            return {}	
-
-skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser, "DIVE":dive_parser}	
+skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser}	
 
 def dispatch_skill_parser(skill, symbol):
     try:	
@@ -51,6 +40,7 @@ def dispatch_skill_parser(skill, symbol):
 def parse(parameter: str):
     parsed_parameter_list = parameter.strip().split()
     num_parameters_parsed = len(parsed_parameter_list)
+    
     if  num_parameters_parsed == 2:	
         parsed_symbol = parsed_parameter_list[0].upper()	
         parsed_skill = parsed_parameter_list[1].upper()	
@@ -60,6 +50,7 @@ def parse(parameter: str):
                 "skill": "no skill",	
                 "skill_output": "no output",	
                 "datetime": "no time"}	
+
     try:	
         return {"symbol": parsed_symbol,	
                 "skill": parsed_skill,	
@@ -70,7 +61,12 @@ def parse(parameter: str):
                 "skill": "no skill",	
                 "skill_output": "no output",	
                 "datetime": "no time"}	
-
+    """	
+    return {	
+        "parameter": parameter,	
+        "datetime": datetime.datetime.now().time()	
+    }	
+    """
 def initialize_div2():
     try:
         # using data from periodic updates at https://www.spglobal.com/spdji/en/indices/equity/sp-500-dividend-points-index-annual/#overview
@@ -86,32 +82,8 @@ def initialize_div2():
             "message": "Initialization failed"
         }
     
-def initialize_dive():
-    try:
-        # using data from dividend.com downloaded Mar 2, 2021
-        # Symbol,Status,NextPayDate,DivYield,NextEstPayout,AnnualDividend
-        with open('dive-mar2-2021.csv') as fr:
-            for line in fr:
-                split_line = line.strip().split(',')
-                if len(split_line) == 6:
-                    [Symbol,Status,NextPayDate,DivYield,NextEstPayout,AnnualDividend]=split_line
-                    dive_dictionary[Symbol]={"symbol":Symbol,
-                                             "status":Status,
-                                             "nextpaydate":NextPayDate,
-                                             "divyield":DivYield,
-                                             "nextestpayout":NextEstPayout,
-                                             "annualdividend":AnnualDividend}
-        return {
-        "message": "DIVE file initialized"
-        }
-    except:
-        return {
-            "message": "DIVE Initialization failed"
-        }
-    
 @app.get("/initialize")
 def initialize():
-    initialize_dive()
     try:
         with open('wsb.csv') as fr:
             for line in fr:

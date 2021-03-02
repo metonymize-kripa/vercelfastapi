@@ -97,13 +97,14 @@ def initialize_dive():
             for line in fr:
                 split_line = line.strip().split(',')
                 if len(split_line) == 6:
-                    [Symbol,Status,NextPayDate,DivYield,NextEstPayout,AnnualDividend]=split_line
+                    [Symbol,Status,NextPayDate,DivYield,NextEstPayout,AnnualDividend,ExDiv]=split_line
                     dive_dictionary[Symbol]={"symbol":Symbol,
                                              "status":Status,
                                              "nextpaydate":NextPayDate,
                                              "divyield":DivYield,
                                              "nextestpayout":NextEstPayout,
-                                             "annualdividend":AnnualDividend}
+                                             "annualdividend":AnnualDividend,
+                                            "exdiv":ExDiv}
         return {
         "message": "DIVE file initialized"
         }

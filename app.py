@@ -28,7 +28,17 @@ def div2_parser(symbol):
     except:	
         return -1	
 
-skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser}	
+def dive_parser(symbol):	
+    try:	
+        return dive_dictionary[symbol]	
+    except:
+        initialize_dive()
+        try:
+            return dive_dictionary[symbol]
+        except:
+            return {}	
+
+skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser, "DIVE":dive_parser}	
 
 def dispatch_skill_parser(skill, symbol):
     try:	
@@ -82,8 +92,30 @@ def initialize_div2():
             "message": "Initialization failed"
         }
     
+def initialize_dive():
+    try:
+        # using data from dividend.com downloaded Mar 2, 2021
+        # Symbol,Status,NextPayDate,DivYield,NextEstPayout,AnnualDividend
+        with open('dive-mar2-2021.csv') as fr:
+            for line in fr:
+                [Symbol,Status,NextPayDate,DivYield,NextEstPayout,AnnualDividend]=line.strip().split(',')
+                dive_dictionary[symbol]={"symbol":Symbol,
+                                         "status":Status,
+                                         "nextpaydate":NextPayDate,
+                                         "divyield":DivYield,
+                                         "nextestpayout":NextEstPayout,
+                                         "annualdividend":AnnualDividend}
+        return {
+        "message": "DIVE file initialized"
+        }
+    except:
+        return {
+            "message": "DIVE Initialization failed"
+        }
+    
 @app.get("/initialize")
 def initialize():
+    initialize_dive()
     try:
         with open('wsb.csv') as fr:
             for line in fr:

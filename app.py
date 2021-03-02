@@ -51,7 +51,6 @@ def dispatch_skill_parser(skill, symbol):
 def parse(parameter: str):
     parsed_parameter_list = parameter.strip().split()
     num_parameters_parsed = len(parsed_parameter_list)
-    
     if  num_parameters_parsed == 2:	
         parsed_symbol = parsed_parameter_list[0].upper()	
         parsed_skill = parsed_parameter_list[1].upper()	
@@ -61,7 +60,6 @@ def parse(parameter: str):
                 "skill": "no skill",	
                 "skill_output": "no output",	
                 "datetime": "no time"}	
-
     try:	
         return {"symbol": parsed_symbol,	
                 "skill": parsed_skill,	
@@ -72,12 +70,7 @@ def parse(parameter: str):
                 "skill": "no skill",	
                 "skill_output": "no output",	
                 "datetime": "no time"}	
-    """	
-    return {	
-        "parameter": parameter,	
-        "datetime": datetime.datetime.now().time()	
-    }	
-    """
+
 def initialize_div2():
     try:
         # using data from periodic updates at https://www.spglobal.com/spdji/en/indices/equity/sp-500-dividend-points-index-annual/#overview

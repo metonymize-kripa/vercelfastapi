@@ -10,8 +10,11 @@ dive_dictionary={}
 
 def wsb_parser(symbol):
     initialize()
-    try:	
-        return wsb_dictionary[symbol]	
+    try:
+        if symbol == '_':
+            return wsb_dictionary[sorted(wsb_dictionary, key=wsb_dictionary.get)[-1]]
+        else:
+            return wsb_dictionary[symbol]	
     except:	
         return -1	
 

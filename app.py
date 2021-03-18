@@ -18,6 +18,14 @@ def wsb_parser(symbol):
     except:	
         return -1	
 
+def wsb_list(sym_cnt):
+    initialize()
+    list_len = int(sym_cnt)
+    try:
+        return str(wsb_dictionary[sorted(wsb_dictionary, key=wsb_dictionary.get)[-list_len:]])
+    except:	
+        return "none"
+    
 def wise_parser(symbol):
     initialize()
     try:	
@@ -42,7 +50,7 @@ def dive_parser(symbol):
         except:
             return {}	
 
-skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser, "DIVE":dive_parser}	
+skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser, "DIVE":dive_parser, "WSBL":wsb_list}	
 
 def dispatch_skill_parser(skill, symbol):
     try:	

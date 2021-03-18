@@ -22,7 +22,7 @@ def wsb_list(sym_cnt):
     initialize()
     list_len = int(sym_cnt)
     try:
-        return str(wsb_dictionary[sorted(wsb_dictionary, key=wsb_dictionary.get)[-list_len:]])
+        return str(sorted(wsb_dictionary, key=wsb_dictionary.get)[-list_len:])
     except:	
         return "none"
     

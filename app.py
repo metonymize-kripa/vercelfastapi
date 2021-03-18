@@ -12,7 +12,7 @@ def wsb_parser(symbol):
     initialize()
     try:
         if symbol == '_':
-            return wsb_dictionary[sorted(wsb_dictionary, key=wsb_dictionary.get)[-1]]
+            return wsb_dictionary[sorted(wsb_dictionary, key=wsb_dictionary.get, reverse=True)[0]]
         else:
             return wsb_dictionary[symbol]	
     except:	
@@ -22,7 +22,7 @@ def wsb_list(sym_cnt):
     initialize()
     list_len = int(sym_cnt)
     try:
-        return str(sorted(wsb_dictionary, key=wsb_dictionary.get)[-list_len:])
+        return str(sorted(wsb_dictionary, key=wsb_dictionary.get, reverse=True)[:list_len])
     except:	
         return "none"
     

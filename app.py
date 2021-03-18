@@ -22,9 +22,9 @@ def wsb_list(sym_cnt):
     initialize()
     list_len = int(sym_cnt)
     try:
-        return ", ".join(sorted(wsb_dictionary, key=wsb_dictionary.get, reverse=True)[:list_len]))
+        return sorted(wsb_dictionary, key=wsb_dictionary.get, reverse=True)[:list_len])
     except:	
-        return "none"
+        return []
     
 def wise_parser(symbol):
     initialize()

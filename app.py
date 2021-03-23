@@ -154,7 +154,7 @@ def initialize_shorts():
                 if len(split_line) == 6:
                     [shorts_date,symbol,shortVolume,shortExemptVolume,totalVolume,market]=split_line
                     shorts_dictionary[symbol]={"symbol":symbol,
-                                               #"shortvolumepercent":int(100*int(ShortVolume)/int(TotalVolume)),
+                                               "shortvolumepercent":int(100*int(ShortVolume)/int(TotalVolume)),
                                              "shortvolume":shortVolume,
                                              "totalvolume":totalVolume}
         return {

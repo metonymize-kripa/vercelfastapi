@@ -140,6 +140,7 @@ def initialize_dive():
 
 @app.get("/initializeshorts")
 def initialize_shorts():
+    """
     return {
         "message": "Hello, shorty!"
     }
@@ -163,11 +164,11 @@ def initialize_shorts():
         return {
             "message": "SHORTS Initialization failed"
         }
-        """
     
 @app.get("/initialize")
 def initialize():
     initialize_dive()
+    initialize_shorts()
     try:
         with open('wsb.csv') as fr:
             for line in fr:

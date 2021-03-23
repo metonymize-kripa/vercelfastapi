@@ -48,9 +48,19 @@ def dive_parser(symbol):
         try:
             return dive_dictionary[symbol]
         except:
-            return {}	
+            return {}
 
-skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser, "DIVE":dive_parser, "WSBL":wsb_list}	
+def shorts_parser(symbol):	
+    try:	
+        return shorts_dictionary[symbol]	
+    except:
+        initialize_shorts()
+        try:
+            return shorts_dictionary[symbol]
+        except:
+            return {}        
+
+skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser, "DIVE":dive_parser, "WSBL":wsb_list, "SHORTS":shorts_parser}	
 
 def dispatch_skill_parser(skill, symbol):
     try:	
@@ -123,6 +133,27 @@ def initialize_dive():
         return {
             "message": "DIVE Initialization failed"
         }
+
+def initialize_shorts():
+    try:
+        # using data from finra: http://regsho.finra.org/regsho-Index.html
+        # Date|Symbol|ShortVolume|ShortExemptVolume|TotalVolume|Market
+        with open('shorts.csv') as fr:
+            for line in fr:
+                split_line = line.strip().split('|')
+                if len(split_line) == 6:
+                    [Date,Symbol,ShortVolume,ShortExemptVolume,TotalVolume,Market]=split_line
+                    shorts_dictionary[Symbol]={"symbol":Symbol,
+                                               "shortvolumepercent":int(100*ShortVolume/TotalVolume),
+                                             "shortvolume":ShortVolume,
+                                             "totalvolume":TotalVolume}
+        return {
+        "message": "SHORTS file initialized"
+        }
+    except:
+        return {
+            "message": "SHORTS Initialization failed"
+        }    
     
 @app.get("/initialize")
 def initialize():

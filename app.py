@@ -135,7 +135,7 @@ def initialize_dive():
             "message": "DIVE Initialization failed"
         }
 
-@app.get("/initialize_shorts")
+@app.get("/initializeshorts")
 def initialize_shorts():
     try:
         # using data from finra: http://regsho.finra.org/regsho-Index.html
@@ -146,7 +146,7 @@ def initialize_shorts():
                 if len(split_line) == 6:
                     [Date,Symbol,ShortVolume,ShortExemptVolume,TotalVolume,Market]=split_line
                     shorts_dictionary[Symbol]={"symbol":Symbol,
-                                               "shortvolumepercent":int(100*ShortVolume/TotalVolume),
+                                               "shortvolumepercent":int(100*int(ShortVolume)/int(TotalVolume)),
                                              "shortvolume":ShortVolume,
                                              "totalvolume":TotalVolume}
         return {

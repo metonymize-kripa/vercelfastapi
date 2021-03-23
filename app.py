@@ -7,6 +7,7 @@ wsb_dictionary={"SPY":0.1}
 wise_dictionary={"SPY":0.2}
 div2_dictionary={}
 dive_dictionary={}
+shorts_dictionary={}
 
 def wsb_parser(symbol):
     initialize()

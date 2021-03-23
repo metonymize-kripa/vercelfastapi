@@ -51,7 +51,9 @@ def dive_parser(symbol):
         except:
             return {}
 
-def shorts_parser(symbol):	
+def shorts_parser(symbol):
+    return {"test":"Hello, parser shorty!"}
+"""
     try:	
         return shorts_dictionary[symbol]	
     except:
@@ -59,7 +61,8 @@ def shorts_parser(symbol):
         try:
             return shorts_dictionary[symbol]
         except:
-            return {}        
+            return {}   
+            """
 
 skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser, "DIVE":dive_parser, "WSBL":wsb_list, "SHORTS":shorts_parser}	
 
@@ -137,6 +140,10 @@ def initialize_dive():
 
 @app.get("/initializeshorts")
 def initialize_shorts():
+    return {
+        "message": "Hello, shorty!"
+    }
+    """
     try:
         # using data from finra: http://regsho.finra.org/regsho-Index.html
         # Date|Symbol|ShortVolume|ShortExemptVolume|TotalVolume|Market
@@ -155,7 +162,8 @@ def initialize_shorts():
     except:
         return {
             "message": "SHORTS Initialization failed"
-        }    
+        }
+        """
     
 @app.get("/initialize")
 def initialize():

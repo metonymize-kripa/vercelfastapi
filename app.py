@@ -52,6 +52,7 @@ def dive_parser(symbol):
             return {}
 
 def shorts_parser(symbol):
+    """
     return {"test":"Hello, parser shorty!"}
 """
     try:	
@@ -61,8 +62,7 @@ def shorts_parser(symbol):
         try:
             return shorts_dictionary[symbol]
         except:
-            return {}   
-            """
+            return {}
 
 skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser, "DIVE":dive_parser, "WSBL":wsb_list, "SHORTS":shorts_parser}	
 

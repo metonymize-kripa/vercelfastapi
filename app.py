@@ -138,7 +138,7 @@ def initialize_dive():
             "message": "DIVE Initialization failed"
         }
 
-@app.get("/initializeshorts")
+#@app.get("/initializeshorts")
 def initialize_shorts():
     """
     return {
@@ -152,11 +152,11 @@ def initialize_shorts():
             for line in fr:
                 split_line = line.strip().split('|')
                 if len(split_line) == 6:
-                    [Date,Symbol,ShortVolume,ShortExemptVolume,TotalVolume,Market]=split_line
-                    shorts_dictionary[Symbol]={"symbol":Symbol,
-                                               "shortvolumepercent":int(100*int(ShortVolume)/int(TotalVolume)),
-                                             "shortvolume":ShortVolume,
-                                             "totalvolume":TotalVolume}
+                    [shorts_date,symbol,shortVolume,shortExemptVolume,totalVolume,market]=split_line
+                    shorts_dictionary[symbol]={"symbol":symbol,
+                                               #"shortvolumepercent":int(100*int(ShortVolume)/int(TotalVolume)),
+                                             "shortvolume":shortVolume,
+                                             "totalvolume":totalVolume}
         return {
         "message": "SHORTS file initialized"
         }

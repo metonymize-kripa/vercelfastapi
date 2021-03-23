@@ -135,6 +135,7 @@ def initialize_dive():
             "message": "DIVE Initialization failed"
         }
 
+@app.get("/initialize_shorts")
 def initialize_shorts():
     try:
         # using data from finra: http://regsho.finra.org/regsho-Index.html

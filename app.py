@@ -14,7 +14,7 @@ shorts_dictionary={}
 def fly_parser(symbol):
     try:
         s = yf.Ticker(symbol)
-        return s.options[0]
+        return s.option_chain(s.options[0]).calls[0]
     except:	
         return -1	
 

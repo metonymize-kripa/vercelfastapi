@@ -200,5 +200,5 @@ def initialize():
 @app.get("/")
 def main():
     return {
-        "message": "Hello, world!"
+        "message": str(fly_parser("TSLA"))
     }

@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 import datetime
+from wallstreet import Stock, Call, Put
+
 
 app = FastAPI()
 
@@ -8,6 +10,14 @@ wise_dictionary={"SPY":0.2}
 div2_dictionary={}
 dive_dictionary={}
 shorts_dictionary={}
+
+def call_fly_parser(symbol):
+    try:
+        s = Stock(symbol)
+        return s.price
+    except:	
+        return -1	
+
 
 def wsb_parser(symbol):
     initialize()
@@ -64,7 +74,7 @@ def shorts_parser(symbol):
         except:
             return {}
 
-skills_dictionary={"WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser, "DIVE":dive_parser, "WSBL":wsb_list, "SHORTS":shorts_parser}	
+skills_dictionary={"FLY":call_fly_parser, "WSB":wsb_parser, "WISE":wise_parser, "DIV2":div2_parser, "DIVE":dive_parser, "WSBL":wsb_list, "SHORTS":shorts_parser}	
 
 def dispatch_skill_parser(skill, symbol):
     try:	

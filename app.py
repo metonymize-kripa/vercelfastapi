@@ -10,11 +10,16 @@ wise_dictionary={"SPY":0.2}
 div2_dictionary={}
 dive_dictionary={}
 shorts_dictionary={}
+options_cache = {}
 
 def fly_parser(symbol):
     try:
         s = yf.Ticker(symbol)
-        return s.option_chain(s.options[0]).calls[0]
+        num_maturities = len(s.options)
+        nearest_calls = s.option_chain(s.options[0]).calls
+        num_nearest_calls = len(nearest_calls)
+        #nearest_puts = s.option_chain(s.options[0]).puts
+        return nearest_calls['lastPrice'][int(num_nearest_calls/2)]
     except:	
         return -1	
 
@@ -200,5 +205,5 @@ def initialize():
 @app.get("/")
 def main():
     return {
-        "message": str(fly_parser("TSLA"))
+        "message": "Hello, world!"
     }
